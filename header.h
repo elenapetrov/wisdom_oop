@@ -37,6 +37,15 @@ public:
 	void Out(ofstream& ofst); // вывод
 	saying() {} // создание без инициализации.
 };
+class riddle : public wisdom {
+	string text; // текст
+	string answer; // ответ
+public:
+	// переопределяем интерфейс класса
+	void InData(ifstream& ifst); // ввод
+	void Out(ofstream& ofst); // вывод
+	riddle() {} // создание без инициализации.
+};
 class container {
 public:
 	Node* current;

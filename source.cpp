@@ -17,6 +17,15 @@ void aphorism::Out(ofstream& ofst) {
 	ofst << "It is an aphorism. Author: " << author << endl;
 }
 
+void riddle::InData(ifstream& ifst) {
+	ifst >> text;
+	ifst >> answer;
+}
+void riddle::Out(ofstream& ofst) {
+	ofst << "Text: " << text << endl;
+	ofst << "It is a riddle. Answer: " << answer << endl;
+}
+
 wisdom* wisdom::In(ifstream& ifst) {
 	wisdom* sh;
 	int k;
@@ -27,6 +36,9 @@ wisdom* wisdom::In(ifstream& ifst) {
 		break;
 	case 2:
 		sh = new saying;
+		break;
+	case 3:
+		sh = new riddle;
 		break;
 	default:
 		return 0;
