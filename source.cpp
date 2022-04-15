@@ -108,13 +108,41 @@ void container::Out(ofstream& ofst) {
 	{
 		return;
 	}
+	Sort();
 	current = head;
 	do
 	{
 		ofst << i << ": ";
 		current->thought->Out(ofst);
-		ofst << "Count of punctuation marks: " << current->thought->CountSymbols() << endl;
+		OutCountOfSymbols(ofst);
 		current = current->next;
 		i++;
 	} while (current != head);
+}
+
+bool wisdom::Compare(wisdom& w)
+{
+	return CountSymbols() < w.CountSymbols();
+}
+
+void container::OutCountOfSymbols(ofstream& ofst)
+{
+	ofst << "count of punctuation marks: " << current->thought->CountSymbols() << endl;
+}
+
+void container::Sort()
+{
+	Node* curr1 = head;
+	Node* curr2 = head;
+	do {
+		curr2 = curr1->next;
+		while (curr2 != head) {
+			if (curr1->thought->Compare(*curr2->thought))
+			{
+				swap(curr1->thought, curr2->thought);
+			}
+			curr2 = curr2->next;
+		}
+		curr1 = curr1->next;
+	} while (curr1 != head);
 }
