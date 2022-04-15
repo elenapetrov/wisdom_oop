@@ -8,6 +8,7 @@ public:
 	static wisdom* In(ifstream& ifst);
 	virtual void InData(ifstream& ifst) = 0; // ввод
 	virtual void Out(ofstream& ofst) = 0; // вывод
+	virtual void OutAphorisms(ofstream& ofst) = 0;
 };
 class Node {
 public:
@@ -25,6 +26,7 @@ public:
 	// переопределяем интерфейс класса
 	void InData(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
+	void OutAphorisms(ofstream& ofst);
 	aphorism() {} // создание без инициализации.
 };
 // пословица
@@ -35,6 +37,7 @@ public:
 	// переопределяем интерфейс класса
 	void InData(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
+	void OutAphorisms(ofstream& ofst);
 	saying() {} // создание без инициализации.
 };
 class container {
@@ -45,6 +48,7 @@ public:
 
 	void In(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
+	void OutAphorisms(ofstream& ofst);
 	void Clear(); // очистка контейнера от фигур
 	container(); // инициализация контейнера
 	~container() { Clear(); } // утилизация контейнера

@@ -7,6 +7,10 @@ void saying::Out(ofstream& ofst) {
 	ofst << "Text: " << text << endl;
 	ofst << "It is a saying. Country: " << country << endl;
 }
+void saying::OutAphorisms(ofstream& ofst)
+{
+	ofst << endl;
+}
 
 void aphorism::InData(ifstream& ifst) {
 	ifst >> text;
@@ -15,6 +19,10 @@ void aphorism::InData(ifstream& ifst) {
 void aphorism::Out(ofstream& ofst) {
 	ofst << "Text: " << text << endl;
 	ofst << "It is an aphorism. Author: " << author << endl;
+}
+void aphorism::OutAphorisms(ofstream& ofst)
+{
+	Out(ofst);
 }
 
 wisdom* wisdom::In(ifstream& ifst) {
@@ -96,6 +104,22 @@ void container::Out(ofstream& ofst) {
 	{
 		ofst << i << ": ";
 		current->thought->Out(ofst);
+		current = current->next;
+		i++;
+	} while (current != head);
+}
+
+void container::OutAphorisms(ofstream& ofst) {
+	int i = 1;
+	if (head == NULL)
+	{
+		return;
+	}
+	current = head;
+	do
+	{
+		ofst << i << ": ";
+		if (current->thought)current->thought->OutAphorisms(ofst);
 		current = current->next;
 		i++;
 	} while (current != head);
