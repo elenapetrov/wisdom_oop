@@ -2,19 +2,23 @@
 void saying::InData(ifstream& ifst) {
 	ifst >> text;
 	ifst >> country;
+	ifst >> rate;
 }
 void saying::Out(ofstream& ofst) {
 	ofst << "Text: " << text << endl;
 	ofst << "It is a saying. Country: " << country << endl;
+	ofst << "Subjective assessment of the saying on a ten-point scale: " << rate << "/10 " << endl;
 }
 
 void aphorism::InData(ifstream& ifst) {
 	ifst >> text;
 	ifst >> author;
+	ifst >> rate;
 }
 void aphorism::Out(ofstream& ofst) {
 	ofst << "Text: " << text << endl;
 	ofst << "It is an aphorism. Author: " << author << endl;
+	ofst << "Subjective assessment of the aphorism on a ten-point scale: " << rate << "/10 " << endl;
 }
 
 void riddle::InData(ifstream& ifst) {

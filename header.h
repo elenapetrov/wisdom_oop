@@ -21,6 +21,7 @@ public:
 class aphorism : public wisdom {
 	string text; // текст
 	string author; // автор
+	int rate;
 public:
 	// переопределяем интерфейс класса
 	void InData(ifstream& ifst); // ввод
@@ -31,6 +32,7 @@ public:
 class saying : public wisdom {
 	string text; // текст
 	string country; // страна
+	int rate;
 public:
 	// переопределяем интерфейс класса
 	void InData(ifstream& ifst); // ввод
