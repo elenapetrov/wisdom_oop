@@ -1,2 +1,2 @@
-﻿  wisdom_oop.vcxproj -> C:\Users\Shele\Documents\GitHub\wisdom_oop\x64\Debug\wisdom_oop.exe
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets(5201,5): error MSB3541: Files содержит недопустимое значение "<<<<<<< HEAD". Путь содержит недопустимые знаки.
+﻿  source.cpp
+  wisdom_oop.vcxproj -> C:\Users\Shele\Documents\GitHub\wisdom_oop\x64\Debug\wisdom_oop.exe

@@ -1,15 +1,11 @@
 #include "Header.h"
 void saying::InData(ifstream& ifst) {
-	ifst >> text;
 	ifst >> country;
-	ifst >> rate;
 }
 void saying::Out(ofstream& ofst) {
-	ofst << "Text: " << text << endl;
 	ofst << "It is a saying. Country: " << country << endl;
-	ofst << "Subjective assessment of the saying on a ten-point scale: " << rate << "/10 " << endl;
 }
-int saying::CountSymbols() {
+int wisdom::CountSymbols() {
 	string symbols = ".,!?;";
 	int cnt = 0;
 	for (int i = 0; i < text.length(); i++)
@@ -24,50 +20,29 @@ void saying::OutAphorisms(ofstream& ofst)
 }
 
 void aphorism::InData(ifstream& ifst) {
-	ifst >> text;
 	ifst >> author;
-	ifst >> rate;
 }
 void aphorism::Out(ofstream& ofst) {
-	ofst << "Text: " << text << endl;
 	ofst << "It is an aphorism. Author: " << author << endl;
-	ofst << "Subjective assessment of the aphorism on a ten-point scale: " << rate << "/10 " << endl;
 }
-int aphorism::CountSymbols() {
-	string symbols = ".,!?;";
-	int cnt = 0;
-	for (int i = 0; i < text.length(); i++)
-	{
-		if (symbols.find(text[i]) < symbols.length())cnt++;
-	}
-	return cnt;
-}
+
 void riddle::InData(ifstream& ifst) {
-	ifst >> text;
 	ifst >> answer;
-	ifst >> rate;
 }
 void riddle::Out(ofstream& ofst) {
-	ofst << "Text: " << text << endl;
 	ofst << "It is a riddle. Answer: " << answer << endl;
-	ofst << "Subjective assessment of the riddle on a ten-point scale: " << rate << "/10 " << endl;
 }
-int riddle::CountSymbols() {
-	string symbols = ".,!?;";
-	int cnt = 0;
-	for (int i = 0; i < text.length(); i++)
-	{
-		if (symbols.find(text[i]) < symbols.length())cnt++;
-	}
-	return cnt;
-}
+
 void riddle::OutAphorisms(ofstream& ofst)
 {
 	ofst << endl;
 }
 void aphorism::OutAphorisms(ofstream& ofst)
 {
+	ofst << "Text: " << text << endl;
 	Out(ofst);
+	ofst << "Subjective assessment of the riddle on a ten-point scale: " << rate << "/10 " << endl;
+	ofst << "count of punctuation marks: " << CountSymbols() << endl;
 }
 
 wisdom* wisdom::In(ifstream& ifst) {
@@ -87,7 +62,9 @@ wisdom* wisdom::In(ifstream& ifst) {
 	default:
 		return 0;
 	}
+	ifst >> sh->text;
 	sh->InData(ifst);
+	ifst >> sh->rate;
 	return sh;
 }
 
@@ -147,12 +124,27 @@ void container::Out(ofstream& ofst) {
 	{
 		return;
 	}
+	//Sort();
+	current = head;
+	do
+	{
+		ofst << i << ": ";
+		ofst << "Text: " << current->thought->text << endl;
+		current->thought->Out(ofst);
+		ofst << "Subjective assessment of the riddle on a ten-point scale: " << current->thought->rate << "/10 " << endl;
+		OutCountOfSymbols(ofst);
+		current = current->next;
+		i++;
+	} while (current != head);
+	ofst << endl << "Sorted container" << endl;
 	Sort();
 	current = head;
 	do
 	{
 		ofst << i << ": ";
+		ofst << "Text: " << current->thought->text << endl;
 		current->thought->Out(ofst);
+		ofst << "Subjective assessment of the riddle on a ten-point scale: " << current->thought->rate << "/10 " << endl;
 		OutCountOfSymbols(ofst);
 		current = current->next;
 		i++;

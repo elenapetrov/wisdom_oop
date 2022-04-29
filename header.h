@@ -4,11 +4,13 @@
 using namespace std;
 class wisdom {
 public:
+	string text; // текст
+	int rate;
 	// иденитфикация, порождение и ввод фигуры из потока
 	static wisdom* In(ifstream& ifst);
 	virtual void InData(ifstream& ifst) = 0; // ввод
 	virtual void Out(ofstream& ofst) = 0; // вывод
-	virtual int CountSymbols() = 0;
+	int CountSymbols();
 	bool Compare(wisdom& p);
 	virtual void OutAphorisms(ofstream& ofst) = 0;
 };
@@ -22,39 +24,30 @@ public:
 };
 // афоризм
 class aphorism : public wisdom {
-	string text; // текст
 	string author; // автор
-	int rate;
 public:
 	// переопределяем интерфейс класса
 	void InData(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
-	int CountSymbols();
 	void OutAphorisms(ofstream& ofst);
 	aphorism() {} // создание без инициализации.
 };
 // пословица
 class saying : public wisdom {
-	string text; // текст
 	string country; // страна
-	int rate;
 public:
 	// переопределяем интерфейс класса
 	void InData(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
-	int CountSymbols();
 	void OutAphorisms(ofstream& ofst);
 	saying() {} // создание без инициализации.
 };
 class riddle : public wisdom {
-	string text; // текст
 	string answer; // ответ
-	int rate;
 public:
 	// переопределяем интерфейс класса
 	void InData(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
-	int CountSymbols();
 	void OutAphorisms(ofstream& ofst);
 	riddle() {} // создание без инициализации.
 };
