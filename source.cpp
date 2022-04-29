@@ -29,7 +29,15 @@ void aphorism::Out(ofstream& ofst) {
 	ofst << "It is an aphorism. Author: " << author << endl;
 	ofst << "Subjective assessment of the aphorism on a ten-point scale: " << rate << "/10 " << endl;
 }
-
+int aphorism::CountSymbols() {
+	string symbols = ".,!?;";
+	int cnt = 0;
+	for (int i = 0; i < text.length(); i++)
+	{
+		if (symbols.find(text[i]) < symbols.length())cnt++;
+	}
+	return cnt;
+}
 void riddle::InData(ifstream& ifst) {
 	ifst >> text;
 	ifst >> answer;
@@ -40,7 +48,7 @@ void riddle::Out(ofstream& ofst) {
 	ofst << "It is a riddle. Answer: " << answer << endl;
 	ofst << "Subjective assessment of the riddle on a ten-point scale: " << rate << "/10 " << endl;
 }
-int aphorism::CountSymbols() {
+int riddle::CountSymbols() {
 	string symbols = ".,!?;";
 	int cnt = 0;
 	for (int i = 0; i < text.length(); i++)
@@ -49,6 +57,7 @@ int aphorism::CountSymbols() {
 	}
 	return cnt;
 }
+
 wisdom* wisdom::In(ifstream& ifst) {
 	wisdom* sh;
 	int k;

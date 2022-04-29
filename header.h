@@ -51,6 +51,7 @@ public:
 	// переопределяем интерфейс класса
 	void InData(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
+	int CountSymbols();
 	riddle() {} // создание без инициализации.
 };
 class container {
