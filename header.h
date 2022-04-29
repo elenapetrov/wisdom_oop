@@ -42,6 +42,7 @@ public:
 class riddle : public wisdom {
 	string text; // текст
 	string answer; // ответ
+	int rate;
 public:
 	// переопределяем интерфейс класса
 	void InData(ifstream& ifst); // ввод

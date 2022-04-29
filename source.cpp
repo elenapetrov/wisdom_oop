@@ -24,10 +24,12 @@ void aphorism::Out(ofstream& ofst) {
 void riddle::InData(ifstream& ifst) {
 	ifst >> text;
 	ifst >> answer;
+	ifst >> rate;
 }
 void riddle::Out(ofstream& ofst) {
 	ofst << "Text: " << text << endl;
 	ofst << "It is a riddle. Answer: " << answer << endl;
+	ofst << "Subjective assessment of the riddle on a ten-point scale: " << rate << "/10 " << endl;
 }
 
 wisdom* wisdom::In(ifstream& ifst) {
