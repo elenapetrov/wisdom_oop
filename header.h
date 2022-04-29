@@ -10,6 +10,7 @@ public:
 	virtual void Out(ofstream& ofst) = 0; // вывод
 	virtual int CountSymbols() = 0;
 	bool Compare(wisdom& p);
+	virtual void OutAphorisms(ofstream& ofst) = 0;
 };
 class Node {
 public:
@@ -29,6 +30,7 @@ public:
 	void InData(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
 	int CountSymbols();
+	void OutAphorisms(ofstream& ofst);
 	aphorism() {} // создание без инициализации.
 };
 // пословица
@@ -41,6 +43,7 @@ public:
 	void InData(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
 	int CountSymbols();
+	void OutAphorisms(ofstream& ofst);
 	saying() {} // создание без инициализации.
 };
 class riddle : public wisdom {
@@ -52,6 +55,7 @@ public:
 	void InData(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
 	int CountSymbols();
+	void OutAphorisms(ofstream& ofst);
 	riddle() {} // создание без инициализации.
 };
 class container {
@@ -63,6 +67,7 @@ public:
 	void In(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
 	void OutCountOfSymbols(ofstream& ofst);
+	void OutAphorisms(ofstream& ofst);
 	void Clear(); // очистка контейнера от фигур
 	void Sort();
 	container(); // инициализация контейнера

@@ -18,6 +18,10 @@ int saying::CountSymbols() {
 	}
 	return cnt;
 }
+void saying::OutAphorisms(ofstream& ofst)
+{
+	ofst << endl;
+}
 
 void aphorism::InData(ifstream& ifst) {
 	ifst >> text;
@@ -56,6 +60,14 @@ int riddle::CountSymbols() {
 		if (symbols.find(text[i]) < symbols.length())cnt++;
 	}
 	return cnt;
+}
+void riddle::OutAphorisms(ofstream& ofst)
+{
+	ofst << endl;
+}
+void aphorism::OutAphorisms(ofstream& ofst)
+{
+	Out(ofst);
 }
 
 wisdom* wisdom::In(ifstream& ifst) {
@@ -172,4 +184,20 @@ void container::Sort()
 		}
 		curr1 = curr1->next;
 	} while (curr1 != head);
+}
+
+void container::OutAphorisms(ofstream& ofst) {
+	int i = 1;
+	if (head == NULL)
+	{
+		return;
+	}
+	current = head;
+	do
+	{
+		ofst << i << ": ";
+		if (current->thought)current->thought->OutAphorisms(ofst);
+		current = current->next;
+		i++;
+	} while (current != head);
 }
