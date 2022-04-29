@@ -8,6 +8,8 @@ public:
 	static wisdom* In(ifstream& ifst);
 	virtual void InData(ifstream& ifst) = 0; // ввод
 	virtual void Out(ofstream& ofst) = 0; // вывод
+	virtual int CountSymbols() = 0;
+	bool Compare(wisdom& p);
 };
 class Node {
 public:
@@ -26,6 +28,7 @@ public:
 	// переопределяем интерфейс класса
 	void InData(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
+	int CountSymbols();
 	aphorism() {} // создание без инициализации.
 };
 // пословица
@@ -37,6 +40,7 @@ public:
 	// переопределяем интерфейс класса
 	void InData(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
+	int CountSymbols();
 	saying() {} // создание без инициализации.
 };
 class riddle : public wisdom {
@@ -57,7 +61,9 @@ public:
 
 	void In(ifstream& ifst); // ввод
 	void Out(ofstream& ofst); // вывод
+	void OutCountOfSymbols(ofstream& ofst);
 	void Clear(); // очистка контейнера от фигур
+	void Sort();
 	container(); // инициализация контейнера
 	~container() { Clear(); } // утилизация контейнера
 };

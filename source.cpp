@@ -9,6 +9,15 @@ void saying::Out(ofstream& ofst) {
 	ofst << "It is a saying. Country: " << country << endl;
 	ofst << "Subjective assessment of the saying on a ten-point scale: " << rate << "/10 " << endl;
 }
+int saying::CountSymbols() {
+	string symbols = ".,!?;";
+	int cnt = 0;
+	for (int i = 0; i < text.length(); i++)
+	{
+		if (symbols.find(text[i]) < symbols.length())cnt++;
+	}
+	return cnt;
+}
 
 void aphorism::InData(ifstream& ifst) {
 	ifst >> text;
@@ -31,7 +40,15 @@ void riddle::Out(ofstream& ofst) {
 	ofst << "It is a riddle. Answer: " << answer << endl;
 	ofst << "Subjective assessment of the riddle on a ten-point scale: " << rate << "/10 " << endl;
 }
-
+int aphorism::CountSymbols() {
+	string symbols = ".,!?;";
+	int cnt = 0;
+	for (int i = 0; i < text.length(); i++)
+	{
+		if (symbols.find(text[i]) < symbols.length())cnt++;
+	}
+	return cnt;
+}
 wisdom* wisdom::In(ifstream& ifst) {
 	wisdom* sh;
 	int k;
@@ -109,12 +126,41 @@ void container::Out(ofstream& ofst) {
 	{
 		return;
 	}
+	Sort();
 	current = head;
 	do
 	{
 		ofst << i << ": ";
 		current->thought->Out(ofst);
+		OutCountOfSymbols(ofst);
 		current = current->next;
 		i++;
 	} while (current != head);
+}
+
+bool wisdom::Compare(wisdom& w)
+{
+	return CountSymbols() < w.CountSymbols();
+}
+
+void container::OutCountOfSymbols(ofstream& ofst)
+{
+	ofst << "count of punctuation marks: " << current->thought->CountSymbols() << endl;
+}
+
+void container::Sort()
+{
+	Node* curr1 = head;
+	Node* curr2 = head;
+	do {
+		curr2 = curr1->next;
+		while (curr2 != head) {
+			if (curr1->thought->Compare(*curr2->thought))
+			{
+				swap(curr1->thought, curr2->thought);
+			}
+			curr2 = curr2->next;
+		}
+		curr1 = curr1->next;
+	} while (curr1 != head);
 }
